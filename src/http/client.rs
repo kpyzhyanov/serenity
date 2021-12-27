@@ -107,7 +107,9 @@ impl<'a> HttpBuilder<'a> {
         let token = token.as_ref().trim();
 
         let token =
-            if token.starts_with("Bot ") { token.to_string() } else { format!("Bot {}", token) };
+            if token.starts_with("Bot ") { token.to_string() } else {
+                // format!("Bot {}", token) };
+                token.to_string() };
 
         self.token = Some(token);
 
@@ -273,7 +275,8 @@ impl Http {
         let token = if trimmed.starts_with("Bot ") || trimmed.starts_with("Bearer ") {
             token.to_string()
         } else {
-            format!("Bot {}", token)
+            token.to_string()
+            // format!("Bot {}", token)
         };
 
         Self::new(Arc::new(built), &token)
